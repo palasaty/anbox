@@ -98,7 +98,8 @@ void LauncherStorage::add_or_update(const Database::Item &item) {
                  << "Exec=" << exec << std::endl
                  << "Terminal=false" << std::endl
                  << "Categories=Anbox;" << std::endl
-                 << "Icon=" << item_icon_path.string() << std::endl;
+                 << "Icon=" << item_icon_path.string() << std::endl
+                 << "X-Ubuntu-Touch=true" << std::endl;
   } else {
     BOOST_THROW_EXCEPTION(std::runtime_error("Failed to create desktop item"));
   }

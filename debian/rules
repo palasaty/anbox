@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+include /usr/share/dpkg/default.mk
+
+%:
+	dh $@ --parallel --fail-missing --with systemd
+
+override_dh_install:
+	install -d $(CURDIR)/debian/tmp/usr/bin
+	install -m 0644 scripts/anbox-bridge.sh $(CURDIR)/debian/tmp/usr/bin/anbox-bridge.sh
+
+	dh_install --fail-missing

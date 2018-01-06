@@ -9,6 +9,11 @@ include /usr/share/dpkg/default.mk
 %:
 	dh $@ --parallel --fail-missing --with systemd
 
+
+override_dh_auto_configure:
+	# Enable debug builds
+	dh_auto_configure -- -DCMAKE_BUILD_TYPE=Debug
+
 override_dh_install:
 	install -d $(CURDIR)/debian/tmp/etc/init
 	install -m 0644 data/ubuntu-touch-session/anbox-container.conf $(CURDIR)/debian/tmp/etc/init/anbox-container.conf

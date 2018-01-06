@@ -413,6 +413,12 @@ void LxcContainer::start(const Configuration &configuration) {
     binder_devices_ = std::move(binder_devices);
   } else {
     auto binder = utils::get_env_value("ANBOX_BINDER", "/dev/binder");
+    // If binder1 exist, use that as default!
+    if (fs::exists("/dev/binder1")) {
+      INFO("Using binder1");
+      binder = utils::get_env_value("ANBOX_BINDER", "/dev/binder1");
+    }
+
     DEBUG("Using static binder device /dev/binder");
     devices.insert({binder, { 0666 }});
   }

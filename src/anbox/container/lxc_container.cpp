@@ -412,8 +412,9 @@ void LxcContainer::start(const Configuration &configuration) {
     bind_mounts.insert({binder_devices[0]->path().string(), "/dev/binder"});
     binder_devices_ = std::move(binder_devices);
   } else {
+    auto binder = utils::get_env_value("ANBOX_BINDER", "/dev/binder");
     DEBUG("Using static binder device /dev/binder");
-    devices.insert({"/dev/binder", { 0666 }});
+    devices.insert({binder, { 0666 }});
   }
 
   for (const auto &bind_mount : bind_mounts) {

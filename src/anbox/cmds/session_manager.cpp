@@ -128,6 +128,11 @@ anbox::cmds::SessionManager::SessionManager()
   flag(cli::make_flag(cli::Name{"disabled-sensors"},
                       cli::Description{"Sensors to disable, comma delimited"},
                       disabled_sensors_));
+#if defined(MIR_SUPPORT)
+  flag(cli::make_flag(cli::Name{"mir-rootless"},
+                      cli::Description{"[Mir only] Run in rootless mode"},
+                      rootless_));
+#endif
 
   action([this](const cli::Command::Context &) {
     auto trap = core::posix::trap_signals_for_process(
@@ -190,6 +195,7 @@ anbox::cmds::SessionManager::SessionManager()
     platform_config.no_touch_emulation = no_touch_emulation_;
     platform_config.display_frame = display_frame;
     platform_config.server_side_decoration = server_side_decoration_;
+    platform_config.rootless = rootless_;
 
     auto platform = platform::create(utils::get_env_value("ANBOX_PLATFORM", "sdl"),
                                      input_manager,

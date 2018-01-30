@@ -154,6 +154,12 @@ anbox::cmds::SessionManager::SessionManager()
       binder = utils::get_env_value("ANBOX_BINDER", "/dev/binder1");
     }
 
+    // If available, use own binder to not cause problem with existing binder
+    if (fs::exists("/dev/anbox-binder")) {
+      DEBUG("Using anbox-binder");
+      binder = utils::get_env_value("ANBOX_BINDER", "/dev/anbox-binder");
+    }
+
     if ((!fs::exists(binder) && !fs::exists(BINDERFS_PATH)) || !fs::exists("/dev/ashmem")) {
       ERROR("Failed to start as either binder or ashmem kernel drivers are not loaded");
       return EXIT_FAILURE;

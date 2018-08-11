@@ -12,7 +12,7 @@ include /usr/share/dpkg/default.mk
 
 override_dh_auto_configure:
 	# Enable debug builds
-	dh_auto_configure -- -DCMAKE_BUILD_TYPE=Debug
+	dh_auto_configure -- -DCMAKE_BUILD_TYPE=Debug -DANBOX_ENABLE_WAYLAND=OFF
 
 override_dh_install:
 	install -d $(CURDIR)/debian/tmp/etc/init

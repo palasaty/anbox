@@ -191,7 +191,7 @@ parts:
       snap/anbox/current/libexec: libexec
     prime:
       - lib/liblxc.so.1
-      - lib/liblxc.so.1.4.0
+      - lib/liblxc.so.1.2.0
       - libexec/lxc/lxc-monitord
       - bin/lxc-start
       - bin/lxc-stop

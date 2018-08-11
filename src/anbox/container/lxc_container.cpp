@@ -306,6 +306,16 @@ void LxcContainer::start(const Configuration &configuration) {
     setup_id_map();
 
   auto bind_mounts = configuration.bind_mounts;
+
+  // Extra bind-mounts for user-namespace setup
+  bind_mounts.insert({"/dev/console", "dev/console"});
+  bind_mounts.insert({"/dev/full", "dev/full"});
+  bind_mounts.insert({"/dev/null", "dev/null"});
+  bind_mounts.insert({"/dev/random", "dev/random"});
+  bind_mounts.insert({"/dev/tty", "dev/tty"});
+  bind_mounts.insert({"/dev/urandom", "dev/urandom"});
+  bind_mounts.insert({"/dev/zero", "dev/zero"});
+
   for (const auto &bind_mount : bind_mounts) {
     std::string create_type = "file";
 
@@ -325,6 +335,7 @@ void LxcContainer::start(const Configuration &configuration) {
     set_config_item("lxc.mount.entry", entry);
   }
 
+/*
   auto devices = configuration.devices;
 
   // Additional devices we need in our container
@@ -344,6 +355,7 @@ void LxcContainer::start(const Configuration &configuration) {
 
   for (const auto& device : devices)
     add_device(device.first, device.second);
+*/
 
   if (!container_->save_config(container_, nullptr))
     throw std::runtime_error("Failed to save container configuration");

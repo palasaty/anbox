@@ -288,8 +288,8 @@ void LxcContainer::start(const Configuration &configuration) {
   set_config_item("lxc.logfile", utils::string_format("%s/container.log", log_path).c_str());
 
   // Dump the console output to disk to have a chance to debug early boot problems
-  set_config_item("lxc.console.logfile", utils::string_format("%s/console.log", log_path).c_str());
-  set_config_item("lxc.console.rotate", "1");
+  //set_config_item("lxc.console.logfile", utils::string_format("%s/console.log", log_path).c_str());
+  //set_config_item("lxc.console.rotate", "1");
 
   setup_network();
 

@@ -1,4 +1,4 @@
-anbox (8) artful; urgency=medium
+anbox (8) xenial; urgency=medium
 
   * Drop upstart/systemctl session jobs
 

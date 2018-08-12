@@ -72,8 +72,8 @@ Window::Window(const std::shared_ptr<Renderer> &renderer,
     BOOST_THROW_EXCEPTION(std::runtime_error(message));
   }
 
-  if (SDL_SetWindowHitTest(window_, &Window::on_window_hit, this) < 0)
-    BOOST_THROW_EXCEPTION(std::runtime_error("Failed to register for window hit test"));
+//  if (SDL_SetWindowHitTest(window_, &Window::on_window_hit, this) < 0)
+//    BOOST_THROW_EXCEPTION(std::runtime_error("Failed to register for window hit test"));
 
   SDL_SysWMinfo info;
   SDL_VERSION(&info.version);

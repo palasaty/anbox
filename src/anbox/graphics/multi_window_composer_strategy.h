@@ -19,6 +19,7 @@
 #define ANBOX_GRAPHICS_MULTI_WINDOW_COMPOSER_STRATEGY_H_
 
 #include "anbox/graphics/layer_composer.h"
+#include "anbox/wm/manager.h"
 
 #include <memory>
 
@@ -32,6 +33,7 @@ class MultiWindowComposerStrategy : public LayerComposer::Strategy {
 
 private:
   std::shared_ptr<wm::Manager> wm_;
+  wm::Task::Id last_task = 0;
 };
 }
 #endif

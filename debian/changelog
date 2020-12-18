@@ -1,3 +1,9 @@
+anbox (8.0) xenial; urgency=medium
+
+  * Bump for Ubuntu Touch build.
+
+ -- Rodney Dawes <dobey@ubports.com>  Fri, 18 Dec 2020 13:01:25 -0500
+
 anbox (8) artful; urgency=medium
 
   * Drop upstart/systemctl session jobs

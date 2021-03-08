@@ -1,3 +1,9 @@
+anbox (9) xenial; urgency=medium
+
+  * Bump version and build for xenial 
+
+ -- Marius Gripsgard <marius@ubports.com>  Tue, 09 Mar 2021 00:50:29 +0100
+
 anbox (8) artful; urgency=medium
 
   * Drop upstart/systemctl session jobs

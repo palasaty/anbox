@@ -18,7 +18,8 @@
 #include "anbox/qemu/fingerprint_message_processor.h"
 #include "anbox/logger.h"
 
-namespace anbox::qemu {
+namespace anbox {
+namespace qemu {
 FingerprintMessageProcessor::FingerprintMessageProcessor(
     const std::shared_ptr<network::SocketMessenger> &messenger)
     : QemudMessageProcessor(messenger) {}
@@ -36,4 +37,5 @@ void FingerprintMessageProcessor::listen() {
   messenger_->send(buf, strlen(buf));
   finish_message();
 }
-}
+}  // namespace qemu
+}  // namespace anbox

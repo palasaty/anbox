@@ -25,21 +25,19 @@
 
 class Renderer;
 
-namespace anbox::audio {
-  class Sink;
-  class Source;
-}
-
-namespace anbox::wm {
-  class Window;
-  class Manager;
-}
-
-namespace anbox::input {
-  class Manager;
-}
-
-namespace anbox::platform {
+namespace anbox {
+namespace audio {
+class Sink;
+class Source;
+} // namespace audio
+namespace wm {
+class Window;
+class Manager;
+} // namespace wm
+namespace input {
+class Manager;
+} // namespace input
+namespace platform {
 class BasePlatform {
  public:
   virtual ~BasePlatform() {}
@@ -73,5 +71,7 @@ struct Configuration {
 std::shared_ptr<BasePlatform> create(const std::string &name,
                                      const std::shared_ptr<input::Manager> &input_manager,
                                      const Configuration &config);
-}
+}  // namespace platform
+}  // namespace anbox
+
 #endif

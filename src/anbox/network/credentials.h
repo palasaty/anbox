@@ -20,7 +20,8 @@
 
 #include <sys/types.h>
 
-namespace anbox::network {
+namespace anbox {
+namespace network {
 class Credentials {
  public:
   Credentials(pid_t pid, uid_t uid, gid_t gid);
@@ -36,5 +37,7 @@ class Credentials {
   uid_t uid_;
   gid_t gid_;
 };
-}
+}  // namespace network
+}  // namespace anbox
+
 #endif

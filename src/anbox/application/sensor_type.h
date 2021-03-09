@@ -3,7 +3,8 @@
 
 #include <string>
 
-namespace anbox::application {
+namespace anbox {
+namespace application {
 enum SensorType {
   UnknownSensor = 0,
   AccelerationSensor = (1 << 0),
@@ -19,5 +20,7 @@ class SensorTypeHelper {
  public:
   static SensorType FromString(const std::string& str);
 };
-}
+}  // namespace application
+}  // namespace anbox
+
 #endif

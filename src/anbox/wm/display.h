@@ -20,7 +20,8 @@
 
 #include <cstdint>
 
-namespace anbox::wm {
+namespace anbox {
+namespace wm {
 class Display {
  public:
   typedef std::int32_t Id;
@@ -31,5 +32,7 @@ class Display {
   Display() = delete;
   Display(const Display&) = delete;
 };
-}
+}  // namespace wm
+}  // namespace anbox
+
 #endif

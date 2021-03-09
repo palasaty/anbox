@@ -19,7 +19,8 @@
 
 #include <ostream>
 
-namespace anbox::android {
+namespace anbox {
+namespace android {
 bool Intent::valid() const {
   // At the moment we only support component+package for intents
   // (see android/service/android_api_skeleton.cpp for more details)
@@ -48,4 +49,5 @@ std::ostream &operator<<(std::ostream &out, const Intent &intent) {
   out << "]";
   return out;
 }
-}
+}  // namespace android
+}  // namespace anbox

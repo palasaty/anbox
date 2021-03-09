@@ -34,7 +34,8 @@ class IOStream;
 class RenderThread;
 class Renderer;
 
-namespace anbox::graphics {
+namespace anbox {
+namespace graphics {
 class OpenGlesMessageProcessor : public network::MessageProcessor {
  public:
   OpenGlesMessageProcessor(
@@ -51,5 +52,7 @@ class OpenGlesMessageProcessor : public network::MessageProcessor {
   std::shared_ptr<IOStream> stream_;
   std::shared_ptr<RenderThread> render_thread_;
 };
-}
+}  // namespace graphics
+}  // namespace anbox
+
 #endif

@@ -23,7 +23,8 @@
 #include <vector>
 #include <string>
 
-namespace anbox::common {
+namespace anbox {
+namespace common {
 class BinaryWriter {
  public:
   enum class Order {
@@ -50,5 +51,7 @@ class BinaryWriter {
   std::vector<std::uint8_t>::iterator end_;
   Order byte_order_;
 };
-}
+} // namespace common
+} // namespace anbox
+
 #endif

@@ -17,7 +17,9 @@
 
 #include "DisplayManager.h"
 
-namespace anbox::graphics::emugl {
+namespace anbox {
+namespace graphics {
+namespace emugl {
 std::shared_ptr<DisplayInfo> DisplayInfo::get() {
   static auto info = std::make_shared<DisplayInfo>();
   return info;
@@ -31,4 +33,6 @@ void DisplayInfo::set_resolution(const std::uint32_t &vertical, const std::uint3
 std::uint32_t DisplayInfo::vertical_resolution() const { return vertical_resolution_; }
 
 std::uint32_t DisplayInfo::horizontal_resolution() const { return horizontal_resolution_; }
-}
+} // namespace emugl
+} // namespace graphics
+} // namespace anbox

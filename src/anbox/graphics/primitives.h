@@ -22,7 +22,8 @@
 
 #include <GLES2/gl2.h>
 
-namespace anbox::graphics {
+namespace anbox {
+namespace graphics {
 struct Vertex {
   GLfloat position[3];
   GLfloat texcoord[2];
@@ -40,5 +41,7 @@ struct Primitive {
   int nvertices;
   Vertex vertices[max_vertices];
 };
-}
+}  // namespace graphics
+}  // namespace anbox
+
 #endif

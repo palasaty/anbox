@@ -23,7 +23,8 @@
 
 #include <boost/asio.hpp>
 
-namespace anbox::network {
+namespace anbox {
+namespace network {
 class TcpSocketMessenger : public BaseSocketMessenger<boost::asio::ip::tcp> {
  public:
   TcpSocketMessenger(const boost::asio::ip::address_v4 &addr,
@@ -37,5 +38,7 @@ class TcpSocketMessenger : public BaseSocketMessenger<boost::asio::ip::tcp> {
  private:
   unsigned short local_port_;
 };
-}
+}  // namespace network
+}  // namespace anbox
+
 #endif

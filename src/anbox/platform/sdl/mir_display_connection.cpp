@@ -42,7 +42,8 @@ static const MirDisplayOutput *find_active_output(
 }
 }
 
-namespace anbox::sdl {
+namespace anbox {
+namespace sdl {
 MirDisplayConnection::MirDisplayConnection()
     : connection_(nullptr),
       output_id_(-1),
@@ -118,4 +119,5 @@ int MirDisplayConnection::vertical_resolution() const {
 int MirDisplayConnection::horizontal_resolution() const {
   return horizontal_resolution_;
 }
-}
+}  // namespace sdl
+}  // namespace anbox

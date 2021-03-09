@@ -17,10 +17,12 @@
 
 #include "anbox/network/connection_context.h"
 
-namespace anbox::network {
+namespace anbox {
+namespace network {
 
 ConnectionContext::ConnectionContext(
     std::function<void()> const connect_handler, Connector const* connector)
     : connect_handler(connect_handler), connector(connector) {}
 
-}
+}  // namespace anbox
+}  // namespace network

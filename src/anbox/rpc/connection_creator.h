@@ -29,7 +29,8 @@
 #include "anbox/network/socket_messenger.h"
 #include "anbox/runtime.h"
 
-namespace anbox::rpc {
+namespace anbox {
+namespace rpc {
 class ConnectionCreator
     : public network::ConnectionCreator<boost::asio::local::stream_protocol> {
  public:
@@ -52,5 +53,7 @@ class ConnectionCreator
       connections_;
   MessageProcessorFactory message_processor_factory_;
 };
-}
+}  // namespace rpc
+}  // namespace anbox
+
 #endif

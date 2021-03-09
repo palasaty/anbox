@@ -20,7 +20,8 @@
 #include "anbox/platform/sdl/platform.h"
 #include "anbox/logger.h"
 
-namespace anbox::platform {
+namespace anbox {
+namespace platform {
 std::shared_ptr<BasePlatform> create(const std::string &name,
                                      const std::shared_ptr<input::Manager> &input_manager,
                                      const Configuration &config) {
@@ -34,4 +35,5 @@ std::shared_ptr<BasePlatform> create(const std::string &name,
 
   return nullptr;
 }
-}
+} // namespace platform
+} // namespace anbox

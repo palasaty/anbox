@@ -21,17 +21,16 @@
 #include "anbox/container/configuration.h"
 #include "anbox/runtime.h"
 
-namespace anbox::rpc {
-  class PendingCallCache;
-  class Channel;
-  class MessageProcessor;
-}
-
-namespace anbox::network {
-  class LocalSocketMessenger;
-}
-
-namespace anbox::container {
+namespace anbox {
+namespace rpc {
+class PendingCallCache;
+class Channel;
+class MessageProcessor;
+}  // namespace rpc
+namespace network {
+class LocalSocketMessenger;
+}  // namespace network
+namespace container {
 class ManagementApiStub;
 class Client {
  public:
@@ -58,5 +57,7 @@ class Client {
   std::array<std::uint8_t, 8192> buffer_;
   TerminateCallback terminate_callback_;
 };
-}
+}  // namespace container
+}  // namespace anbox
+
 #endif

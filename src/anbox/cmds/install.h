@@ -24,7 +24,8 @@
 
 #include "anbox/cli.h"
 
-namespace anbox::cmds {
+namespace anbox {
+namespace cmds {
 class Install : public cli::CommandWithFlagsAndAction {
  public:
   Install();
@@ -32,5 +33,7 @@ class Install : public cli::CommandWithFlagsAndAction {
  private:
   std::string apk_;
 };
-}
+}  // namespace cmds
+}  // namespace anbox
+
 #endif

@@ -20,7 +20,8 @@
 
 #include <cstdint>
 
-namespace anbox::audio {
+namespace anbox {
+namespace audio {
 struct ClientInfo {
   enum class Type : std::uint8_t {
     Playback = 0,
@@ -29,5 +30,7 @@ struct ClientInfo {
   };
   Type type;
 };
-}
+} // namespace audio
+} // namespace anbox
+
 #endif

@@ -17,6 +17,8 @@
 
 #include "anbox/wm/task.h"
 
-namespace anbox::wm {
+namespace anbox {
+namespace wm {
 Task::Id Task::Invalid = -1;
-}
+}  // namespace wm
+}  // namespace anbox

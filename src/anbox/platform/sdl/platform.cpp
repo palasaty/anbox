@@ -32,7 +32,9 @@
 #include <sys/types.h>
 #pragma GCC diagnostic pop
 
-namespace anbox::platform::sdl {
+namespace anbox {
+namespace platform {
+namespace sdl {
 Platform::Platform(
     const std::shared_ptr<input::Manager> &input_manager,
     const Configuration &config)
@@ -538,4 +540,6 @@ std::shared_ptr<audio::Source> Platform::create_audio_source() {
 bool Platform::supports_multi_window() const {
   return true;
 }
-}
+} // namespace sdl
+} // namespace platform
+} // namespace anbox

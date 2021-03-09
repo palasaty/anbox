@@ -22,7 +22,8 @@
 #include "anbox/network/message_processor.h"
 #include "anbox/network/socket_messenger.h"
 
-namespace anbox::qemu {
+namespace anbox {
+namespace qemu {
 class GpsMessageProcessor : public network::MessageProcessor {
  public:
   GpsMessageProcessor(const std::shared_ptr<network::SocketMessenger> &messenger, const std::shared_ptr<anbox::application::GpsInfoBroker> &gpsInfoBroker);
@@ -35,5 +36,7 @@ class GpsMessageProcessor : public network::MessageProcessor {
   std::shared_ptr<anbox::application::GpsInfoBroker> gps_info_broker_;
   boost::signals2::connection connection_;
 };
-}
+}  // namespace qemu
+}  // namespace anbox
+
 #endif

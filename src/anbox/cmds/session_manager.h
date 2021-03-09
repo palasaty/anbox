@@ -27,15 +27,14 @@
 #include "anbox/graphics/gl_renderer_server.h"
 #include "anbox/graphics/rect.h"
 
-namespace anbox::bridge {
-  class AndroidApiStub;
-}
-
-namespace anbox::container {
-  class Client;
-}
-
-namespace anbox::cmds {
+namespace anbox {
+namespace bridge {
+class AndroidApiStub;
+} // namespace bridge
+namespace container {
+class Client;
+}  // namespace container
+namespace cmds {
 class SessionManager : public cli::CommandWithFlagsAndAction {
  public:
   SessionManager();
@@ -56,5 +55,7 @@ class SessionManager : public cli::CommandWithFlagsAndAction {
   bool server_side_decoration_ = false;
   bool rootless_ = false;
 };
-}
+}  // namespace cmds
+}  // namespace anbox
+
 #endif

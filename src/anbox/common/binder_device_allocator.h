@@ -20,12 +20,15 @@
 
 #include <memory>
 
-namespace anbox::common {
+namespace anbox {
+namespace common {
 class BinderDevice;
 class BinderDeviceAllocator {
  public:
   static bool is_supported();
   static std::unique_ptr<BinderDevice> new_device();
 };
-}
+} // namespace common
+} // namespace anbox
+
 #endif

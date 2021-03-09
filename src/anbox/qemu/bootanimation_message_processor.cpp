@@ -20,7 +20,8 @@
 
 #include <fstream>
 
-namespace anbox::qemu {
+namespace anbox {
+namespace qemu {
 BootAnimationMessageProcessor::BootAnimationMessageProcessor(
     const std::shared_ptr<network::SocketMessenger> &messenger,
     const std::string &icon_path)
@@ -43,4 +44,5 @@ void BootAnimationMessageProcessor::retrieve_icon() {
   }
 }
 
-}
+}  // namespace qemu
+}  // namespace anbox

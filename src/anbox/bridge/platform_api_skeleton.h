@@ -22,34 +22,36 @@
 #include <memory>
 
 namespace google {
-  namespace protobuf {
-    class Closure;
-  }  // namespace protobuf
+namespace protobuf {
+class Closure;
+}  // namespace protobuf
 }  // namespace google
 
-namespace anbox::protobuf::rpc {
-  class Void;
+namespace anbox {
+namespace protobuf {
+namespace rpc {
+class Void;
 }  // namespace rpc
-namespace anbox::protobuf::bridge {
-  class ClipboardData;
-  class BootFinishedEvent;
-  class WindowStateUpdateEvent;
-  class ApplicationListUpdateEvent;
+namespace bridge {
+class ClipboardData;
+class BootFinishedEvent;
+class WindowStateUpdateEvent;
+class ApplicationListUpdateEvent;
 }  // namespace bridge
-
-namespace anbox::platform {
-  class BasePlatform;
+}  // namespace protobuf
+namespace platform {
+class BasePlatform;
 } // namespace platform
-namespace anbox::rpc {
-  class PendingCallCache;
-}  // nameanbox::space rpc
-namespace anbox::wm {
-  class Manager;
+namespace rpc {
+class PendingCallCache;
+}  // namespace rpc
+namespace wm {
+class Manager;
 }  // namespace wm
-namespace anbox::application {
-  class Database;
+namespace application {
+class Database;
 }  // namespace application
-namespace anbox::bridge {
+namespace bridge {
 class PlatformApiSkeleton {
  public:
   PlatformApiSkeleton(
@@ -82,7 +84,7 @@ class PlatformApiSkeleton {
   std::shared_ptr<application::Database> app_db_;
   std::function<void()> boot_finished_handler_;
 };
-}
-
+}  // namespace bridge
+}  // namespace anbox
 
 #endif

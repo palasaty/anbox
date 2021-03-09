@@ -37,7 +37,8 @@ namespace {
 constexpr const std::chrono::milliseconds default_rpc_call_timeout{30000};
 } // namespace
 
-namespace anbox::bridge {
+namespace anbox {
+namespace bridge {
 AndroidApiStub::AndroidApiStub() {}
 
 AndroidApiStub::~AndroidApiStub() {}
@@ -222,4 +223,5 @@ void AndroidApiStub::task_resized(Request<protobuf::rpc::Void> *request) {
   (void)request;
   resize_task_handle_.result_received();
 }
-}
+}  // namespace bridge
+}  // namespace anbox

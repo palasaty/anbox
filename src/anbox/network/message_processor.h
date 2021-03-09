@@ -22,12 +22,15 @@
 #include <vector>
 #include "anbox/common/small_vector.h"
 
-namespace anbox::network {
+namespace anbox {
+namespace network {
 class MessageProcessor {
  public:
   virtual ~MessageProcessor() {}
   virtual bool process_data(const std::vector<std::uint8_t> &) { return false; }
   virtual bool process_data(anbox::common::SmallFixedVector<char, 512> &&) { return false; }
 };
-}
+}  // namespace network
+}  // namespace anbox
+
 #endif

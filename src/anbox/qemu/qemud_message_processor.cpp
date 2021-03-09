@@ -25,7 +25,8 @@ namespace {
 static constexpr const long header_size{4};
 } // namespace
 
-namespace anbox::qemu {
+namespace anbox {
+namespace qemu {
 QemudMessageProcessor::QemudMessageProcessor(
     const std::shared_ptr<network::SocketMessenger> &messenger)
     : messenger_(messenger) {}
@@ -85,4 +86,5 @@ void QemudMessageProcessor::finish_message() {
   // Send terminating NULL byte
   messenger_->send(static_cast<const char *>(""), 1);
 }
-}
+}  // namespace qemu
+}  // namespace anbox

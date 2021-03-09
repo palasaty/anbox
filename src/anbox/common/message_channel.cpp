@@ -14,7 +14,8 @@
 
 #include "anbox/common/message_channel.h"
 
-namespace anbox::common {
+namespace anbox {
+namespace common {
 MessageChannelBase::MessageChannelBase(size_t capacity) : pos_(0U),
                                                           count_(0U),
                                                           capacity_(capacity),
@@ -59,4 +60,5 @@ void MessageChannelBase::after_read() {
   can_write_.notify_one();
   lock_.unlock();
 }
-}
+}  // namespace common
+}  // namespace anbox

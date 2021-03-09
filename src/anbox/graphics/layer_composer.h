@@ -23,12 +23,12 @@
 #include <memory>
 #include <map>
 
-namespace anbox::wm {
-  class Manager;
-  class Window;
-}
-
-namespace anbox::graphics {
+namespace anbox {
+namespace wm {
+class Manager;
+class Window;
+}  // namespace wm
+namespace graphics {
 class LayerComposer {
  public:
   class Strategy {
@@ -49,5 +49,7 @@ class LayerComposer {
   std::shared_ptr<Renderer> renderer_;
   std::shared_ptr<Strategy> strategy_;
 };
-}
+}  // namespace graphics
+}  // namespace anbox
+
 #endif

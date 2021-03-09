@@ -26,7 +26,8 @@
 #include "anbox/network/connection_creator.h"
 #include "anbox/network/connector.h"
 
-namespace anbox::network {
+namespace anbox {
+namespace network {
 class PublishedSocketConnector : public DoNotCopyOrMove, public Connector {
  public:
   explicit PublishedSocketConnector(
@@ -49,5 +50,7 @@ class PublishedSocketConnector : public DoNotCopyOrMove, public Connector {
       connection_creator_;
   boost::asio::local::stream_protocol::acceptor acceptor_;
 };
-}
+}  // namespace network
+}  // namespace anbox
+
 #endif

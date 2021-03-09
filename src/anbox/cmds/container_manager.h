@@ -27,7 +27,8 @@
 #include "anbox/common/loop_device.h"
 #include "anbox/common/mount_entry.h"
 
-namespace anbox::cmds {
+namespace anbox {
+namespace cmds {
 class ContainerManager : public cli::CommandWithFlagsAndAction {
  public:
   ContainerManager();
@@ -49,5 +50,7 @@ class ContainerManager : public cli::CommandWithFlagsAndAction {
   std::string container_network_gateway_;
   std::string container_network_dns_servers_;
 };
-}
+}  // namespace cmds
+}  // namespace anbox
+
 #endif

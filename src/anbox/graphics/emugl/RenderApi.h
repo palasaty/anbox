@@ -28,7 +28,9 @@ typedef struct {
   logger_t fine;
 } emugl_logger_struct;
 
-namespace anbox::graphics::emugl {
+namespace anbox {
+namespace graphics {
+namespace emugl {
 struct GLLibrary {
   enum class Type { EGL, GLESv1, GLESv2 };
   Type type;
@@ -38,5 +40,8 @@ struct GLLibrary {
 std::vector<GLLibrary> default_gl_libraries();
 
 bool initialize(const std::vector<GLLibrary> &libs, emugl_logger_struct *log_funcs, logger_t crash_func);
-}
+}  // namespace emugl
+}  // namespace graphics
+}  // namespace anbox
+
 #endif

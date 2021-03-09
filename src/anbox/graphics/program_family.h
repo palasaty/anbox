@@ -25,7 +25,8 @@
 
 #include <GLES2/gl2.h>
 
-namespace anbox::graphics {
+namespace anbox {
+namespace graphics {
 /**
  * ProgramFamily represents a set of GLSL programs that are closely
  * related. Programs which point to the same shader source strings will be
@@ -58,5 +59,7 @@ class ProgramFamily {
   };
   std::map<ShaderPair, Program> program;
 };
-}
+}  // namespace graphics
+}  // namespace anbox
+
 #endif  // MIR_RENDERER_GL_PROGRAM_FAMILY_H_

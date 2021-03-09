@@ -18,7 +18,8 @@
 #ifndef ANBOX_GRAPHICS_DENSITY_H_
 #define ANBOX_GRAPHICS_DENSITY_H_
 
-namespace anbox::graphics {
+namespace anbox {
+namespace graphics {
 /**
  * @brief Defines different types of density being used in an Android system.
  * See the
@@ -37,5 +38,7 @@ enum class DensityType {
 
 DensityType current_density();
 int dp_to_pixel(unsigned int dp);
-}
+}  // namespace graphics
+}  // namespace anbox
+
 #endif

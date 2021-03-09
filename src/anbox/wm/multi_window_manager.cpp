@@ -23,7 +23,8 @@
 
 #include <algorithm>
 
-namespace anbox::wm {
+namespace anbox {
+namespace wm {
 MultiWindowManager::MultiWindowManager(const std::weak_ptr<platform::BasePlatform> &platform,
                                        const std::shared_ptr<bridge::AndroidApiStub> &android_api_stub,
                                        const std::shared_ptr<application::Database> &app_db)
@@ -123,4 +124,5 @@ void MultiWindowManager::set_focused_task(const Task::Id &task) {
 void MultiWindowManager::remove_task(const Task::Id &task) {
   android_api_stub_->remove_task(task);
 }
-}
+}  // namespace wm
+}  // namespace anbox

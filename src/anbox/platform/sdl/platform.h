@@ -29,16 +29,16 @@
 
 class Renderer;
 
-namespace anbox::input {
-  class Device;
-  class Manager;
-}
-
-namespace anbox::wm {
-  class Manager;
-}
-
-namespace anbox::platform::sdl {
+namespace anbox {
+namespace input {
+class Device;
+class Manager;
+}  // namespace input
+namespace wm {
+class Manager;
+} // namespace wm
+namespace platform {
+namespace sdl {
 class Platform : public std::enable_shared_from_this<Platform>,
                        public platform::BasePlatform,
                        public Window::Observer {
@@ -111,5 +111,8 @@ class Platform : public std::enable_shared_from_this<Platform>,
   void push_finger_up(int finger_id, std::vector<input::Event> &touch_events);
   void push_finger_motion(int x, int y, int finger_id, std::vector<input::Event> &touch_events);
 };
-}
+} // namespace sdl
+} // namespace platform
+} // namespace anbox
+
 #endif

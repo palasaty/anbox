@@ -19,7 +19,8 @@
 
 #include "anbox/common/wait_handle.h"
 
-namespace anbox::common {
+namespace anbox {
+namespace common {
 WaitHandle::WaitHandle()
     : guard(), wait_condition(), expecting(0), received(0) {}
 
@@ -74,4 +75,5 @@ bool WaitHandle::is_pending() {
   std::unique_lock<std::mutex> lock(guard);
   return expecting > 0 && received != expecting;
 }
-}
+}  // namespace common
+}  // namespace anbox

@@ -25,7 +25,8 @@
 #include <memory>
 #include <mutex>
 
-namespace anbox::wm {
+namespace anbox {
+namespace wm {
 class Manager {
  public:
   virtual ~Manager();
@@ -42,5 +43,7 @@ class Manager {
   // FIXME only applies for the multi-window case
   virtual std::shared_ptr<Window> find_window_for_task(const Task::Id &task) = 0;
 };
-}
+}  // namespace wm
+}  // namespace anbox
+
 #endif

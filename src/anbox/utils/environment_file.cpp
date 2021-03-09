@@ -20,7 +20,8 @@
 
 #include <fstream>
 
-namespace anbox::utils {
+namespace anbox {
+namespace utils {
 EnvironmentFile::EnvironmentFile(const boost::filesystem::path &path) {
   std::ifstream in(path.string());
   std::string line;
@@ -38,4 +39,5 @@ std::string EnvironmentFile::value(const std::string &key, const std::string &de
     return default_value;
   return iter->second;
 }
-}
+} // namespace utils
+} // namespace anbox

@@ -39,7 +39,8 @@ const constexpr char* binderfs_control_path{BINDERFS_PATH "/binder-control"};
 const constexpr char* default_binder_device_name{"binder"};
 } // namespace
 
-namespace anbox::common {
+namespace anbox {
+namespace common {
 bool BinderDeviceAllocator::is_supported() {
   return fs::exists(binderfs_control_path);
 }
@@ -79,4 +80,5 @@ std::unique_ptr<BinderDevice> BinderDeviceAllocator::new_device() {
 
   return BinderDevice::create(path);
 }
-}
+} // namespace common
+} // namespace anbox

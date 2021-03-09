@@ -25,7 +25,8 @@
 #include <boost/asio.hpp>
 #include <mutex>
 
-namespace anbox::network {
+namespace anbox {
+namespace network {
 template <typename stream_protocol>
 class BaseSocketMessenger : public SocketMessenger {
  public:
@@ -58,5 +59,7 @@ class BaseSocketMessenger : public SocketMessenger {
   anbox::Fd socket_fd;
   std::mutex message_lock;
 };
-}
+}  // namespace network
+}  // namespace anbox
+
 #endif

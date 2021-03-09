@@ -23,7 +23,8 @@
 
 #include <boost/asio/local/stream_protocol.hpp>
 
-namespace anbox::network {
+namespace anbox {
+namespace network {
 class LocalSocketMessenger
     : public BaseSocketMessenger<boost::asio::local::stream_protocol> {
  public:
@@ -37,5 +38,7 @@ class LocalSocketMessenger
  private:
   std::shared_ptr<boost::asio::local::stream_protocol::socket> socket_;
 };
-}
+}  // namespace network
+}  // namespace anbox
+
 #endif

@@ -17,7 +17,9 @@
 
 #include "anbox/wm/display.h"
 
-namespace anbox::wm {
+namespace anbox {
+namespace wm {
 Display::Id Display::Invalid = -1;
 Display::Id Display::Default = 0;
-}
+}  // namespace wm
+}  // namespace anbox

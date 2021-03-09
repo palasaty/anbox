@@ -24,7 +24,8 @@
 
 namespace ba = boost::asio;
 
-namespace anbox::rpc {
+namespace anbox {
+namespace rpc {
 ConnectionCreator::ConnectionCreator(const MessageProcessorFactory& factory)
     : next_connection_id_(0),
       connections_(
@@ -57,4 +58,5 @@ void ConnectionCreator::create_connection_for(
 
 int ConnectionCreator::next_id() { return next_connection_id_.fetch_add(1); }
 
-}
+}  // namespace rpc
+}  // namespace anbox

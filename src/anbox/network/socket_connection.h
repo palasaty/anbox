@@ -28,7 +28,8 @@
 
 #include <sys/types.h>
 
-namespace anbox::network {
+namespace anbox {
+namespace network {
 class SocketConnection {
  public:
   SocketConnection(
@@ -58,6 +59,7 @@ protected:
   std::array<std::uint8_t, 8192> buffer_;
   std::string name_;
 };
-}
+}  // namespace anbox
+}  // namespace network
 
 #endif

@@ -25,7 +25,8 @@
 #include <functional>
 #include <queue>
 
-namespace anbox::graphics {
+namespace anbox {
+namespace graphics {
 std::mutex OpenGlesMessageProcessor::global_lock{};
 
 OpenGlesMessageProcessor::OpenGlesMessageProcessor(
@@ -57,4 +58,5 @@ bool OpenGlesMessageProcessor::process_data(
   stream->post_data(std::move(data));
   return true;
 }
-}
+}  // namespace graphics
+}  // namespace anbox

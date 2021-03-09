@@ -21,23 +21,25 @@
 #include <memory>
 
 namespace google {
-  namespace protobuf {
-    class Closure;
-  }
-}
+namespace protobuf {
+class Closure;
+}  // namespace protobuf
+}  // namespace google
 
-namespace anbox::protobuf::rpc {
-  class Void;
-}
-namespace anbox::protobuf::container {
-  class StartContainer;
-  class StopContainer;
-}
-
-namespace anbox::rpc {
-  class PendingCallCache;
-}
-namespace anbox::container {
+namespace anbox {
+namespace protobuf {
+namespace rpc {
+class Void;
+}  // namespace rpc
+namespace container {
+class StartContainer;
+class StopContainer;
+}  // namespace container
+}  // namespace protobuf
+namespace rpc {
+class PendingCallCache;
+}  // namespace rpc
+namespace container {
 class Container;
 class ManagementApiSkeleton {
  public:
@@ -56,6 +58,7 @@ class ManagementApiSkeleton {
  private:
   std::shared_ptr<Container> container_;
 };
-}
+}  // namespace container
+}  // namespace anbox
 
 #endif

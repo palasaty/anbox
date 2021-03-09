@@ -24,10 +24,13 @@
 
 #include "anbox/cli.h"
 
-namespace anbox::cmds {
+namespace anbox {
+namespace cmds {
 class SystemInfo : public cli::CommandWithFlagsAndAction {
  public:
   SystemInfo();
 };
-}
+}  // namespace cmds
+}  // namespace anbox
+
 #endif

@@ -17,7 +17,8 @@
 
 #include "anbox/wm/window_state.h"
 
-namespace anbox::wm {
+namespace anbox {
+namespace wm {
 WindowState::WindowState()
     : display_(Display::Invalid),
       has_surface_(false),
@@ -38,4 +39,5 @@ WindowState::WindowState(const Display::Id &display, bool has_surface,
       stack_(stack) {}
 
 WindowState::~WindowState() {}
-}
+}  // namespace wm
+}  // namespace anbox

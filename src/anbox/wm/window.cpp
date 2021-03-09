@@ -19,7 +19,8 @@
 #include "anbox/graphics/emugl/Renderer.h"
 #include "anbox/logger.h"
 
-namespace anbox::wm {
+namespace anbox {
+namespace wm {
 Window::Window(const std::shared_ptr<Renderer> &renderer, const Task::Id &task, const graphics::Rect &frame, const std::string &title)
     : renderer_(renderer), task_(task), frame_(frame), title_(title) {}
 
@@ -57,4 +58,5 @@ void Window::release() {
     return;
   renderer_->destroyNativeWindow(native_handle());
 }
-}
+}  // namespace wm
+}  // namespace anbox

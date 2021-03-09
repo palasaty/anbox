@@ -20,7 +20,8 @@
 
 #include "anbox/rpc/message_processor.h"
 
-namespace anbox::bridge {
+namespace anbox {
+namespace bridge {
 class PlatformApiSkeleton;
 class PlatformMessageProcessor : public rpc::MessageProcessor {
  public:
@@ -36,6 +37,7 @@ class PlatformMessageProcessor : public rpc::MessageProcessor {
  private:
   std::shared_ptr<PlatformApiSkeleton> server_;
 };
-}
+}  // namespace anbox
+}  // namespace network
 
 #endif

@@ -20,7 +20,8 @@
 
 #include <ostream>
 
-namespace anbox::wm {
+namespace anbox {
+namespace wm {
 class Stack {
  public:
   enum class Id {
@@ -36,7 +37,9 @@ class Stack {
 
 std::ostream& operator<<(std::ostream &out, Stack::Id const &stack);
 std::istream& operator>>(std::istream &in, Stack::Id &stack);
-}
+}  // namespace wm
+}  // namespace anbox
+
 
 
 #endif

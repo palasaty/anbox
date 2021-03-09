@@ -17,6 +17,8 @@
 
 #include "anbox/container/container.h"
 
-namespace anbox::container {
+namespace anbox {
+namespace container {
 Container::~Container() {}
-}
+}  // namespace container
+}  // namespace anbox

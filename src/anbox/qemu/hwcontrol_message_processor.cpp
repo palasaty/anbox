@@ -18,7 +18,8 @@
 #include "anbox/qemu/hwcontrol_message_processor.h"
 #include "anbox/logger.h"
 
-namespace anbox::qemu {
+namespace anbox {
+namespace qemu {
 HwControlMessageProcessor::HwControlMessageProcessor(
     const std::shared_ptr<network::SocketMessenger> &messenger)
     : QemudMessageProcessor(messenger) {}
@@ -39,4 +40,5 @@ void HwControlMessageProcessor::handle_command(const std::string &command) {
   (void)command;
 #endif
 }
-}
+}  // namespace qemu
+}  // namespace anbox

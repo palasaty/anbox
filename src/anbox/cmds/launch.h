@@ -30,7 +30,8 @@
 #include "anbox/dbus-old/stub/application_manager.h"
 #endif
 
-namespace anbox::cmds {
+namespace anbox {
+namespace cmds {
 class Launch : public cli::CommandWithFlagsAndAction {
  public:
   Launch();
@@ -45,5 +46,7 @@ class Launch : public cli::CommandWithFlagsAndAction {
   wm::Stack::Id stack_ = wm::Stack::Id::Default;
   bool use_system_dbus_ = false;
 };
-}
+}  // namespace cmds
+}  // namespace anbox
+
 #endif

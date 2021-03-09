@@ -22,7 +22,8 @@
 // Miscellenaous helper declarations for unit-tests using the GoogleTest
 // framework.
 
-namespace anbox::testing {
+namespace anbox {
+namespace testing {
 // RangesMatch is a useful template used to compare the content of two
 // ranges at runtime. Usage is simply:
 //
@@ -57,4 +58,5 @@ inline ::testing::AssertionResult RangesMatch(const Range1& expected,
 
   return ::testing::AssertionSuccess();
 }
-}
+}  // namespace testing
+}  // namespace anbox

@@ -25,7 +25,8 @@
 
 #include <memory>
 
-namespace anbox::common {
+namespace anbox {
+namespace common {
 class Dispatcher : public DoNotCopyOrMove {
  public:
   typedef std::function<void()> Task;
@@ -37,5 +38,7 @@ class Dispatcher : public DoNotCopyOrMove {
 
 std::shared_ptr<Dispatcher> create_dispatcher_for_runtime(
     const std::shared_ptr<Runtime>&);
-}
+}  // namespace common
+}  // namespace anbox
+
 #endif

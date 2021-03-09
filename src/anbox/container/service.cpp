@@ -32,7 +32,8 @@
 
 namespace fs = boost::filesystem;
 
-namespace anbox::container {
+namespace anbox {
+namespace container {
 std::shared_ptr<Service> Service::create(const std::shared_ptr<Runtime> &rt, const Configuration &config) {
   auto sp = std::shared_ptr<Service>(new Service(rt, config));
 
@@ -101,4 +102,5 @@ void Service::new_client(std::shared_ptr<boost::asio::local::stream_protocol::so
   connections_->add(connection);
   connection->read_next_message();
 }
-}
+}  // namespace container
+}  // namespace anbox

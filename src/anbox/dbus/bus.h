@@ -27,7 +27,8 @@
 
 #include <systemd/sd-bus.h>
 
-namespace anbox::dbus {
+namespace anbox {
+namespace dbus {
 class Bus : public DoNotCopyOrMove {
  public:
   enum class Type {
@@ -52,5 +53,7 @@ class Bus : public DoNotCopyOrMove {
   std::atomic_bool running_{false};
 };
 using BusPtr = std::shared_ptr<Bus>;
-}
+}  // namespace dbus
+}  // namespace anbox
+
 #endif

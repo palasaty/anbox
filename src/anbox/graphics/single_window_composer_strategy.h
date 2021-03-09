@@ -22,7 +22,8 @@
 
 #include <memory>
 
-namespace anbox::graphics {
+namespace anbox {
+namespace graphics {
 class SingleWindowComposerStrategy : public LayerComposer::Strategy {
  public:
   SingleWindowComposerStrategy(const std::shared_ptr<wm::Manager> &wm);
@@ -33,5 +34,7 @@ class SingleWindowComposerStrategy : public LayerComposer::Strategy {
 private:
   std::shared_ptr<wm::Manager> wm_;
 };
-}
+}  // namespace graphics
+}  // namespace anbox
+
 #endif

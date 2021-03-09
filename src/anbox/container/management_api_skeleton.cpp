@@ -29,7 +29,8 @@
 #include <google/protobuf/stubs/callback.h>
 #endif
 
-namespace anbox::container {
+namespace anbox {
+namespace container {
 ManagementApiSkeleton::ManagementApiSkeleton(
     const std::shared_ptr<Container> &container)
     : container_(container) { }
@@ -94,4 +95,5 @@ void ManagementApiSkeleton::stop_container(
 
   done->Run();
 }
-}
+}  // namespace container
+}  // namespace anbox

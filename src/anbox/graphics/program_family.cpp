@@ -23,7 +23,8 @@
 #include <string>
 #include <stdexcept>
 
-namespace anbox::graphics {
+namespace anbox {
+namespace graphics {
 void ProgramFamily::Shader::init(GLenum type, const GLchar* src) {
   if (!id) {
     id = s_gles2.glCreateShader(type);
@@ -91,4 +92,5 @@ GLuint ProgramFamily::add_program(const GLchar* const vshader_src,
 
   return p.id;
 }
-}
+}  // namespace graphics
+}  // namespace anbox

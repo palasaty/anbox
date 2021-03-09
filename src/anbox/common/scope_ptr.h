@@ -19,7 +19,8 @@
 
 #include <stdlib.h>
 
-namespace anbox::common {
+namespace anbox {
+namespace common {
 
 struct FreeDelete {
   template <class T>
@@ -94,4 +95,5 @@ makeCustomScopedPtr(T data, Func deleter) {
       data, FuncDelete<typename std::decay<Func>::type>(deleter));
 }
 
-}
+}  // namespace common
+}  // namespace anbox

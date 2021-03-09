@@ -21,7 +21,8 @@
 #include "anbox/logger.h"
 #include <string>
 
-namespace anbox::qemu {
+namespace anbox {
+namespace qemu {
 BootPropertiesMessageProcessor::BootPropertiesMessageProcessor(
     const std::shared_ptr<network::SocketMessenger> &messenger)
     : QemudMessageProcessor(messenger) {}
@@ -56,4 +57,5 @@ void BootPropertiesMessageProcessor::list_properties() {
 
   finish_message();
 }
-}
+}  // namespace qemu
+}  // namespace anbox

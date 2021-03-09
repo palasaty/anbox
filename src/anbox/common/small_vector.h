@@ -45,7 +45,8 @@
 // but fill free to add the ones you need.
 //
 
-namespace anbox::common {
+namespace anbox {
+namespace common {
 
 //
 // Forward-declare the 'real' small vector class.
@@ -371,4 +372,5 @@ class SmallFixedVector : public SmallVector<T> {
   } mData;
 };
 
-}
+}  // namespace common
+}  // namespace anbox

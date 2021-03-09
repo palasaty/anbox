@@ -22,7 +22,8 @@
 #include <sys/types.h>
 #include <cstddef>
 
-namespace anbox::network {
+namespace anbox {
+namespace network {
 class MessageSender {
  public:
   virtual void send(char const* data, size_t length) = 0;
@@ -34,6 +35,7 @@ class MessageSender {
   MessageSender(MessageSender const&) = delete;
   MessageSender& operator=(MessageSender const&) = delete;
 };
-}
+}  // namespace anbox
+}  // namespace network
 
 #endif

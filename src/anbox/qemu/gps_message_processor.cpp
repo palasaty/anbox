@@ -21,7 +21,8 @@
 
 #include "anbox/logger.h"
 
-namespace anbox::qemu {
+namespace anbox {
+namespace qemu {
 GpsMessageProcessor::GpsMessageProcessor(const std::shared_ptr<network::SocketMessenger> &messenger, const std::shared_ptr<anbox::application::GpsInfoBroker> &gpsInfoBroker) : messenger_(messenger), gps_info_broker_(gpsInfoBroker) {
   connection_ = gps_info_broker_->newNmeaSentence.connect([this](const std::string &sentence) {
     auto dataToSend = sentence + "\n";
@@ -37,4 +38,5 @@ bool GpsMessageProcessor::process_data(const std::vector<std::uint8_t> &data) {
   ERROR("Got unexpected GPS data: " + std::to_string(data.size()));
   return true;
 }
-}
+}  // namespace qemu
+}  // namespace anbox

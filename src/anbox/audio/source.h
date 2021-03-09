@@ -22,12 +22,15 @@
 
 #include <vector>
 
-namespace anbox::audio {
+namespace anbox {
+namespace audio {
 class Source {
  public:
   virtual ~Source() {}
 
   virtual void read_data(std::vector<std::uint8_t> &data) = 0;
 };
-}
+} // namespace audio
+} // namespace anbox
+
 #endif

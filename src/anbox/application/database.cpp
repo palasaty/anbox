@@ -20,7 +20,8 @@
 #include "anbox/system_configuration.h"
 #include "anbox/logger.h"
 
-namespace anbox::application {
+namespace anbox {
+namespace application {
 const Database::Item Database::Unknown{};
 
 Database::Database() :
@@ -55,4 +56,5 @@ const Database::Item& Database::find_by_package(const std::string &package) cons
     return Unknown;
   return iter->second;
 }
-}
+}  // namespace application
+}  // namespace anbox

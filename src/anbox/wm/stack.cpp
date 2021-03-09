@@ -17,7 +17,8 @@
 
 #include "anbox/wm/stack.h"
 
-namespace anbox::wm {
+namespace anbox {
+namespace wm {
 std::ostream &operator<<(std::ostream &out, const Stack::Id &stack) {
   switch (stack) {
   case anbox::wm::Stack::Id::Default:
@@ -46,4 +47,5 @@ std::istream& operator>>(std::istream& in, Stack::Id &stack) {
     stack = anbox::wm::Stack::Id::Freeform;
   return in;
 }
-}
+}  // namespace wm
+}  // namespace anbox

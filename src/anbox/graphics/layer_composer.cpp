@@ -20,7 +20,8 @@
 #include "anbox/logger.h"
 #include "anbox/wm/manager.h"
 
-namespace anbox::graphics {
+namespace anbox {
+namespace graphics {
 LayerComposer::LayerComposer(const std::shared_ptr<Renderer> renderer, const std::shared_ptr<Strategy> &strategy)
     : renderer_(renderer), strategy_(strategy) {}
 
@@ -34,4 +35,5 @@ void LayerComposer::submit_layers(const RenderableList &renderables) {
                     w.second);
   }
 }
-}
+}  // namespace graphics
+}  // namespace anbox

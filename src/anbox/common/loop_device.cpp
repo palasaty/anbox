@@ -25,7 +25,8 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 
-namespace anbox::common {
+namespace anbox {
+namespace common {
 std::shared_ptr<LoopDevice> LoopDevice::create(const boost::filesystem::path &path) {
   const auto fd = ::open(path.c_str(), O_RDWR);
   if (fd < 0)
@@ -60,4 +61,5 @@ bool LoopDevice::attach_file(const boost::filesystem::path &file_path) {
 
   return true;
 }
-}
+} // namespace common
+} // namespace anbox

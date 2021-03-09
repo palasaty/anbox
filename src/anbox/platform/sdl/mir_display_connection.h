@@ -24,7 +24,8 @@
 
 #include <EGL/egl.h>
 
-namespace anbox::sdl {
+namespace anbox {
+namespace sdl {
 class MirDisplayConnection {
  public:
   MirDisplayConnection();
@@ -45,5 +46,7 @@ class MirDisplayConnection {
   int vertical_resolution_;
   int horizontal_resolution_;
 };
-}
+}  // namespace sdl
+}  // namespace anbox
+
 #endif

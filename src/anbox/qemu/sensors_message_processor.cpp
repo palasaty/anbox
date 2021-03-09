@@ -36,8 +36,8 @@ std::ostream& operator<<(std::ostream& os, std::tuple<double, double, double> t)
 }
 }  // namespace std
 
-
-namespace anbox::qemu {
+namespace anbox {
+namespace qemu {
 SensorsMessageProcessor::SensorsMessageProcessor(
     shared_ptr<network::SocketMessenger> messenger, shared_ptr<application::SensorsState> sensorsState)
     : QemudMessageProcessor(messenger), sensors_state_(sensorsState),
@@ -114,4 +114,5 @@ void SensorsMessageProcessor::send_message(const string& msg) {
   messenger_->send(msg.c_str(), msg.length());
 }
 
-}
+}  // namespace qemu
+}  // namespace anbox

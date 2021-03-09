@@ -28,7 +28,9 @@
 
 class Renderer;
 
-namespace anbox::platform::sdl {
+namespace anbox {
+namespace platform {
+namespace sdl {
 class Window : public std::enable_shared_from_this<Window>, public wm::Window {
  public:
   typedef std::int32_t Id;
@@ -72,5 +74,8 @@ class Window : public std::enable_shared_from_this<Window>, public wm::Window {
   EGLNativeWindowType native_window_;
   SDL_Window *window_;
 };
-}
+} // namespace sdl
+} // namespace platform
+} // namespace anbox
+
 #endif

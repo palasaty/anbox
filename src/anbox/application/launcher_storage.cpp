@@ -31,7 +31,8 @@ namespace {
 constexpr const char *snap_exe_path{"/snap/bin/anbox"};
 }
 
-namespace anbox::application {
+namespace anbox {
+namespace application {
 LauncherStorage::LauncherStorage(const fs::path &path) :
   path_(path) {}
 
@@ -122,4 +123,5 @@ void LauncherStorage::remove(const Database::Item &item) {
     fs::remove(item_icon_path);
 }
 
-}
+}  // namespace application
+}  // namespace anbox

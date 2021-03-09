@@ -20,11 +20,14 @@
 
 #include <memory>
 
-namespace anbox::common {
+namespace anbox {
+namespace common {
 class LoopDevice;
 class LoopDeviceAllocator {
  public:
   static std::shared_ptr<LoopDevice> new_device();
 };
-}
+} // namespace common
+} // namespace anbox
+
 #endif

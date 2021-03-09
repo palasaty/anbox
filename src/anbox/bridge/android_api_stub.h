@@ -25,15 +25,16 @@
 #include <memory>
 #include <vector>
 
-namespace anbox::protobuf::rpc {
-  class Void;
-}
-
-namespace anbox::rpc {
-  class Channel;
-}
-
-namespace anbox::bridge {
+namespace anbox {
+namespace protobuf {
+namespace rpc {
+class Void;
+}  // namespace bridge
+}  // namespace protobuf
+namespace rpc {
+class Channel;
+}  // namespace rpc
+namespace bridge {
 class AndroidApiStub : public anbox::application::Manager {
  public:
   AndroidApiStub();
@@ -77,5 +78,7 @@ class AndroidApiStub : public anbox::application::Manager {
   graphics::Rect launch_bounds_ = graphics::Rect::Invalid;
   core::Property<bool> ready_;
 };
-}
+}  // namespace bridge
+}  // namespace anbox
+
 #endif

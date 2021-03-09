@@ -23,7 +23,8 @@
 
 #include <functional>
 
-namespace anbox::network {
+namespace anbox {
+namespace network {
 template <typename stream_protocol>
 class DelegateConnectionCreator : public ConnectionCreator<stream_protocol> {
  public:
@@ -47,5 +48,7 @@ class DelegateConnectionCreator : public ConnectionCreator<stream_protocol> {
                      boost::asio::basic_stream_socket<stream_protocol>> const&)>
       delegate_;
 };
-}
+}  // namespace network
+}  // namespace anbox
+
 #endif

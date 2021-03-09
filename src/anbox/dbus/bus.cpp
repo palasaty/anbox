@@ -18,7 +18,8 @@
 #include "anbox/dbus/bus.h"
 #include "anbox/logger.h"
 
-namespace anbox::dbus {
+namespace anbox {
+namespace dbus {
 Bus::Bus(Type type) {
   int ret = 0;
   switch (type) {
@@ -79,4 +80,5 @@ void Bus::worker_main() {
       break;
   }
 }
-}
+}  // namespace dbus
+}  // namespace anbox

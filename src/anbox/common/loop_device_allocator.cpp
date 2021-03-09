@@ -36,7 +36,8 @@ const constexpr char *loop_control_path{"/dev/loop-control"};
 const constexpr char *base_loop_path{"/dev/loop"};
 }
 
-namespace anbox::common {
+namespace anbox {
+namespace common {
 std::shared_ptr<LoopDevice> LoopDeviceAllocator::new_device() {
   const auto ctl_fd = ::open(loop_control_path, O_RDWR);
   if (ctl_fd < 0)
@@ -50,4 +51,5 @@ std::shared_ptr<LoopDevice> LoopDeviceAllocator::new_device() {
 
   return LoopDevice::create(utils::string_format("%s%d", base_loop_path, device_nr));
 }
-}
+} // namespace common
+} // namespace anbox

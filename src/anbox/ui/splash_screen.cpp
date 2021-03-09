@@ -22,7 +22,8 @@
 
 #include <SDL2/SDL_image.h>
 
-namespace anbox::ui {
+namespace anbox {
+namespace ui {
 SplashScreen::SplashScreen() {
 #ifdef SDL_HINT_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR
   // Don't disable compositing
@@ -98,4 +99,5 @@ void SplashScreen::process_events() {
     }
   }
 }
-}
+} // namespace ui
+} // namespace anbox

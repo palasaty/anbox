@@ -27,11 +27,13 @@
 #include <google/protobuf/message_lite.h>
 #include <google/protobuf/stubs/common.h>
 
-namespace anbox::protobuf::rpc {
-  class Invocation;
-}
-
-namespace anbox::rpc {
+namespace anbox {
+namespace protobuf {
+namespace rpc {
+class Invocation;
+}  // namespace rpc
+}  // namespace protobuf
+namespace rpc {
 class Invocation {
  public:
   Invocation(anbox::protobuf::rpc::Invocation const& invocation)
@@ -64,5 +66,7 @@ class MessageProcessor : public network::MessageProcessor {
   std::vector<std::uint8_t> buffer_;
   std::shared_ptr<PendingCallCache> pending_calls_;
 };
-}
+}  // namespace rpc
+}  // namespace anbox
+
 #endif

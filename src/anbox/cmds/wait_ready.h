@@ -24,7 +24,8 @@
 
 #include "anbox/cli.h"
 
-namespace anbox::cmds {
+namespace anbox {
+namespace cmds {
 class WaitReady : public cli::CommandWithFlagsAndAction {
  public:
   WaitReady();
@@ -32,5 +33,7 @@ class WaitReady : public cli::CommandWithFlagsAndAction {
  private:
   bool use_system_dbus_ = false;
 };
-}
+}  // namespace cmds
+}  // namespace anbox
+
 #endif

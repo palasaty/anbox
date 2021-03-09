@@ -21,7 +21,8 @@
 
 #include <memory>
 
-namespace anbox::rpc {
+namespace anbox {
+namespace rpc {
 template <typename ProtobufType>
 auto make_protobuf_object() {
   return std::unique_ptr<ProtobufType>{ProtobufType::default_instance().New()};
@@ -33,5 +34,7 @@ auto make_protobuf_object(ProtobufType const& from) {
   object->CopyFrom(from);
   return object;
 }
-}
+}  // namespace rpc
+}  // namespace anbox
+
 #endif

@@ -23,7 +23,8 @@
 #include "anbox/application/sensors_state.h"
 #include "anbox/qemu/qemud_message_processor.h"
 
-namespace anbox::qemu {
+namespace anbox {
+namespace qemu {
 class SensorsMessageProcessor : public QemudMessageProcessor {
  public:
   SensorsMessageProcessor(
@@ -41,5 +42,7 @@ class SensorsMessageProcessor : public QemudMessageProcessor {
   std::atomic<bool> run_thread_;
   std::thread thread_;
 };
-}
+}  // namespace qemu
+}  // namespace anbox
+
 #endif

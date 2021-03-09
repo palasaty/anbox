@@ -22,7 +22,8 @@
 
 #include <EGL/egl.h>
 
-namespace anbox::graphics {
+namespace anbox {
+namespace graphics {
 class Renderer {
  public:
   virtual ~Renderer() {}
@@ -31,5 +32,7 @@ class Renderer {
                     const anbox::graphics::Rect& window_frame,
                     const RenderableList& renderables) = 0;
 };
-}
+}  // namespace graphics
+}  // namespace anbox
+
 #endif

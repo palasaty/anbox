@@ -26,11 +26,11 @@
 
 #include <lxc/lxccontainer.h>
 
-namespace anbox::common {
-  class BinderDevice;
-}
-
-namespace anbox::container {
+namespace anbox {
+namespace common {
+class BinderDevice;
+} // namespace common
+namespace container {
 class LxcContainer : public Container {
  public:
   LxcContainer(bool privileged,
@@ -65,5 +65,7 @@ class LxcContainer : public Container {
 
 // get_id_map() is published for unit testing
 std::vector<std::string> get_id_map(uid_t uid, gid_t gid);
-}
+}  // namespace container
+}  // namespace anbox
+
 #endif

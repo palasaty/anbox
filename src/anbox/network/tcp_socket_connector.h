@@ -26,7 +26,8 @@
 #include "anbox/network/connection_creator.h"
 #include "anbox/network/connector.h"
 
-namespace anbox::network {
+namespace anbox {
+namespace network {
 class TcpSocketConnector : public DoNotCopyOrMove, public Connector {
  public:
   explicit TcpSocketConnector(
@@ -50,5 +51,7 @@ class TcpSocketConnector : public DoNotCopyOrMove, public Connector {
   std::shared_ptr<ConnectionCreator<boost::asio::ip::tcp>> connection_creator_;
   boost::asio::ip::tcp::acceptor acceptor_;
 };
-}
+}  // namespace network
+}  // namespace anbox
+
 #endif

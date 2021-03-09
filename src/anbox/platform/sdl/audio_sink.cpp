@@ -26,7 +26,9 @@ namespace {
 const constexpr size_t max_queue_size{16};
 }
 
-namespace anbox::platform::sdl {
+namespace anbox {
+namespace platform {
+namespace sdl {
 AudioSink::AudioSink() :
   device_id_(0),
   queue_(max_queue_size) {
@@ -112,4 +114,6 @@ void AudioSink::write_data(const std::vector<std::uint8_t> &data) {
   graphics::Buffer buffer{data.data(), data.data() + data.size()};
   queue_.push_locked(std::move(buffer), l);
 }
-}
+} // namespace sdl
+} // namespace platform
+} // namespace anbox

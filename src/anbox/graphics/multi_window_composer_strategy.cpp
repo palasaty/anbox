@@ -19,7 +19,8 @@
 #include "anbox/wm/manager.h"
 #include "anbox/utils.h"
 
-namespace anbox::graphics {
+namespace anbox {
+namespace graphics {
 MultiWindowComposerStrategy::MultiWindowComposerStrategy(const std::shared_ptr<wm::Manager> &wm) : wm_(wm) {}
 
 std::map<std::shared_ptr<wm::Window>, RenderableList> MultiWindowComposerStrategy::process_layers(const RenderableList &renderables) {
@@ -90,4 +91,5 @@ std::map<std::shared_ptr<wm::Window>, RenderableList> MultiWindowComposerStrateg
 
   return win_layers;
 }
-}
+}  // namespace graphics
+}  // namespace anbox

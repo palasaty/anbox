@@ -7,7 +7,8 @@
 #include "anbox/do_not_copy_or_move.h"
 #include "anbox/logger.h"
 
-namespace anbox::application {
+namespace anbox {
+namespace application {
 struct SensorsState : public DoNotCopyOrMove {
   SensorsState() {
     disabled_sensors = 0;
@@ -30,5 +31,7 @@ struct SensorsState : public DoNotCopyOrMove {
   double pressure;
   double humidity;
 };
-}
+}  // namespace application
+}  // namespace anbox
+
 #endif

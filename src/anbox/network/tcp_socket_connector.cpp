@@ -19,7 +19,8 @@
 #include "anbox/network/connection_context.h"
 #include "anbox/network/socket_helper.h"
 
-namespace anbox::network {
+namespace anbox {
+namespace network {
 TcpSocketConnector::TcpSocketConnector(
     const boost::asio::ip::address_v4& address, unsigned short port,
     const std::shared_ptr<Runtime>& rt,
@@ -60,4 +61,5 @@ void TcpSocketConnector::on_new_connection(
 
   start_accept();
 }
-}
+}  // namespace network
+}  // namespace anbox

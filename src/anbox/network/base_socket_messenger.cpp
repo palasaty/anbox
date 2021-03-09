@@ -35,7 +35,8 @@ namespace {
 unsigned int const serialization_buffer_size = 2048;
 }
 
-namespace anbox::network {
+namespace anbox {
+namespace network {
 template <typename stream_protocol>
 BaseSocketMessenger<stream_protocol>::BaseSocketMessenger() {}
 
@@ -146,4 +147,5 @@ void BaseSocketMessenger<stream_protocol>::close() {
 
 template class BaseSocketMessenger<boost::asio::local::stream_protocol>;
 template class BaseSocketMessenger<boost::asio::ip::tcp>;
-}
+}  // namespace network
+}  // namespace anbox

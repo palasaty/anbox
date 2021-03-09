@@ -28,7 +28,8 @@
 
 #include "anbox_rpc.pb.h"
 
-namespace anbox::rpc {
+namespace anbox {
+namespace rpc {
 // Utility metafunction result_ptr_t<> allows invoke() to pick the right
 // send_response() overload. The base template resolves to the prototype
 // "send_response(::google::protobuf::uint32 id, ::google::protobuf::Message*
@@ -68,5 +69,7 @@ void invoke(Self* self, Bridge* rpc,
     self->send_response(invocation.id(), &result_message);
   }
 }
-}
+}  // namespace rpc
+}  // namespace anbox
+
 #endif

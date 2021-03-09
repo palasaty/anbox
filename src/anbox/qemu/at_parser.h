@@ -26,7 +26,8 @@
 
 #include "anbox/do_not_copy_or_move.h"
 
-namespace anbox::qemu {
+namespace anbox {
+namespace qemu {
 class AtParser {
  public:
   typedef std::function<void(const std::string &)> CommandHandler;
@@ -42,5 +43,7 @@ class AtParser {
 
   std::map<std::string, CommandHandler> handlers_;
 };
-}
+}  // namespace qemu
+}  // namespace anbox
+
 #endif

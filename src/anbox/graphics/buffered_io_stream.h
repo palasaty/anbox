@@ -26,7 +26,8 @@
 #include <memory>
 #include <thread>
 
-namespace anbox::graphics {
+namespace anbox {
+namespace graphics {
 class BufferedIOStream : public IOStream {
  public:
   static const size_t default_buffer_size{384};
@@ -58,5 +59,7 @@ class BufferedIOStream : public IOStream {
   BufferQueue out_queue_;
   std::thread worker_thread_;
 };
-}
+}  // namespace graphics
+}  // namespace anbox
+
 #endif

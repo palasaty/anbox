@@ -30,7 +30,8 @@
 #include <boost/exception/errinfo_errno.hpp>
 #include <boost/throw_exception.hpp>
 
-namespace anbox::network {
+namespace anbox {
+namespace network {
 
 StreamSocketTransport::StreamSocketTransport(const std::string& socket_path,
                                              const std::shared_ptr<Runtime>& rt)
@@ -63,4 +64,5 @@ void StreamSocketTransport::read_next_message() {
 void StreamSocketTransport::on_read_size(const boost::system::error_code& ec,
                                          std::size_t bytes_read) {}
 
-}
+}  // namespace network
+}  // namespace anbox

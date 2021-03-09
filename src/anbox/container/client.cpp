@@ -27,7 +27,8 @@
 namespace ba = boost::asio;
 namespace bs = boost::system;
 
-namespace anbox::container {
+namespace anbox {
+namespace container {
 Client::Client(const std::shared_ptr<Runtime> &rt)
     : messenger_(std::make_shared<network::LocalSocketMessenger>(
           SystemConfiguration::instance().container_socket_path(), rt)),
@@ -78,4 +79,5 @@ void Client::on_read_size(const boost::system::error_code &error,
 
   if (processor_->process_data(data)) read_next_message();
 }
-}
+}  // namespace container
+}  // namespace anbox

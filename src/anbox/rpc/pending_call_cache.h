@@ -23,17 +23,21 @@
 #include <map>
 #include <mutex>
 
-namespace google::protobuf {
-  class Closure;
-  class MessageLite;
-}
+namespace google {
+namespace protobuf {
+class Closure;
+class MessageLite;
+}  // namespace protobuf
+}  // namespace google
 
-namespace anbox::protobuf::rpc {
-  class Invocation;
-  class Result;
-}
-
-namespace anbox::rpc {
+namespace anbox {
+namespace protobuf {
+namespace rpc {
+class Invocation;
+class Result;
+}  // namespace rpc
+}  // namespace protobuf
+namespace rpc {
 class PendingCallCache {
  public:
   PendingCallCache();
@@ -64,6 +68,7 @@ class PendingCallCache {
   std::mutex mutable mutex_;
   std::map<int, PendingCall> pending_calls_;
 };
-}
+}  // namespace rpc
+}  // namespace anbox
 
 #endif

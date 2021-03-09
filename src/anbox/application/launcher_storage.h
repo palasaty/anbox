@@ -27,7 +27,8 @@
 #include <boost/filesystem.hpp>
 #include <boost/algorithm/string/predicate.hpp>
 
-namespace anbox::application {
+namespace anbox {
+namespace application {
 class LauncherStorage {
  public:
   LauncherStorage(const boost::filesystem::path &path);
@@ -44,5 +45,7 @@ class LauncherStorage {
 
   boost::filesystem::path path_;
 };
-}
+}  // namespace application
+}  // namespace anbox
+
 #endif

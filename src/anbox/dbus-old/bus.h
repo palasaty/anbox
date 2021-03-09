@@ -15,35 +15,45 @@
  *
  */
 
-#ifndef ANBOX_CMDS_LAUNCH_H_
-#define ANBOX_CMDS_LAUNCH_H_
+#ifndef ANBOX_DBUS_BUS_H_
+#define ANBOX_DBUS_BUS_H_
 
-#include <functional>
-#include <iostream>
+#include "anbox/do_not_copy_or_move.h"
+
+#include <atomic>
 #include <memory>
+#include <mutex>
+#include <thread>
 
-#include "anbox/android/intent.h"
-#include "anbox/wm/stack.h"
-#include "anbox/cli.h"
+#include <systemd/sd-bus.h>
 
-#ifdef USE_OLD_DBUS
-#include "anbox/dbus-old/stub/application_manager.h"
-#endif
-
-namespace anbox::cmds {
-class Launch : public cli::CommandWithFlagsAndAction {
+namespace anbox {
+namespace dbus {
+class Bus : public DoNotCopyOrMove {
  public:
-  Launch();
+  enum class Type {
+    System,
+    Session
+  };
+
+  Bus(Type type);
+  ~Bus();
+
+  sd_bus* raw();
+
+  bool has_service_with_name(const std::string& name);
+  void run_async();
+  void stop();
 
  private:
-  bool launch_session_manager();
-#ifdef USE_OLD_DBUS
-  bool try_launch_activity(const std::shared_ptr<dbus::stub::ApplicationManager> &stub);
-#endif
+  void worker_main();
 
-  android::Intent intent_;
-  wm::Stack::Id stack_ = wm::Stack::Id::Default;
-  bool use_system_dbus_ = false;
+  sd_bus *bus_ = nullptr;
+  std::thread worker_thread_;
+  std::atomic_bool running_{false};
 };
-}
+using BusPtr = std::shared_ptr<Bus>;
+}  // namespace dbus
+}  // namespace anbox
+
 #endif

@@ -40,7 +40,8 @@ std::ostream& operator<<(std::ostream& os, std::tuple<double, double, double> t)
 namespace anbox::qemu {
 SensorsMessageProcessor::SensorsMessageProcessor(
     shared_ptr<network::SocketMessenger> messenger, shared_ptr<application::SensorsState> sensorsState)
-    : QemudMessageProcessor(messenger), sensors_state_(sensorsState) {
+    : QemudMessageProcessor(messenger), sensors_state_(sensorsState),
+      delay_(200), run_thread_(true) {
   enabledSensors_ = 0;
   thread_ = std::thread([this]() {
     for (;;) {

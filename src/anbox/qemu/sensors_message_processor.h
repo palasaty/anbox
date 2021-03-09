@@ -36,9 +36,9 @@ class SensorsMessageProcessor : public QemudMessageProcessor {
  private:
   void send_message(const std::string& message);
   std::shared_ptr<application::SensorsState> sensors_state_;
-  std::atomic<int> delay_ = 200;
+  std::atomic<int> delay_;
   std::atomic<uint32_t> enabledSensors_;
-  std::atomic<bool> run_thread_ = true;
+  std::atomic<bool> run_thread_;
   std::thread thread_;
 };
 }

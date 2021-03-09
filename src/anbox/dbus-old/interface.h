@@ -15,35 +15,31 @@
  *
  */
 
-#ifndef ANBOX_CMDS_LAUNCH_H_
-#define ANBOX_CMDS_LAUNCH_H_
+#ifndef ANBOX_DBUS_INTERFACE_H_
+#define ANBOX_DBUS_INTERFACE_H_
 
-#include <functional>
-#include <iostream>
-#include <memory>
-
-#include "anbox/android/intent.h"
-#include "anbox/wm/stack.h"
-#include "anbox/cli.h"
-
-#ifdef USE_OLD_DBUS
-#include "anbox/dbus-old/stub/application_manager.h"
-#endif
-
-namespace anbox::cmds {
-class Launch : public cli::CommandWithFlagsAndAction {
- public:
-  Launch();
-
- private:
-  bool launch_session_manager();
-#ifdef USE_OLD_DBUS
-  bool try_launch_activity(const std::shared_ptr<dbus::stub::ApplicationManager> &stub);
-#endif
-
-  android::Intent intent_;
-  wm::Stack::Id stack_ = wm::Stack::Id::Default;
-  bool use_system_dbus_ = false;
+namespace anbox {
+namespace dbus {
+namespace interface {
+struct Service {
+  static inline const char* name() { return "org.anbox"; }
+  static inline const char* path() { return "/org/anbox"; }
 };
-}
+struct ApplicationManager {
+  static inline const char* name() { return "org.anbox.ApplicationManager"; }
+  struct Methods {
+      struct Launch {
+        static inline const char* name() { return "Launch"; }
+      };
+  };
+  struct Properties {
+    struct Ready {
+      static inline const char* name() { return "Ready"; }
+    };
+  };
+};
+}  // namespace interface
+}  // namespace dbus
+}  // namespace anbox
+
 #endif

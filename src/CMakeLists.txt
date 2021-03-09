@@ -59,34 +59,68 @@ add_library(anbox-protobuf
 target_link_libraries(anbox-protobuf
     ${PROTOBUF_LITE_LIBRARIES})
 
-set(XML2CPP ${CMAKE_BINARY_DIR}/external/sdbus-cpp/src/sdbus-cpp-build/tools/sdbus-c++-xml2cpp)
+if(NOT USE_OLD_DBUS)
+    set(XML2CPP ${CMAKE_BINARY_DIR}/external/sdbus-cpp/src/sdbus-cpp-build/tools/sdbus-c++-xml2cpp)
 
-macro(DBusServer BaseName)
-    add_custom_command(
-        COMMAND ${XML2CPP} --adaptor=${CMAKE_CURRENT_BINARY_DIR}/${BaseName}_server_glue.h ${CMAKE_CURRENT_SOURCE_DIR}/anbox/dbus/${BaseName}.xml
-        DEPENDS anbox/dbus/${BaseName}.xml
-        OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${BaseName}_server_glue.h
-        COMMENT "Generating server code for DBUS (${BaseName})"
+    macro(DBusServer BaseName)
+        add_custom_command(
+            COMMAND ${XML2CPP} --adaptor=${CMAKE_CURRENT_BINARY_DIR}/${BaseName}_server_glue.h ${CMAKE_CURRENT_SOURCE_DIR}/anbox/dbus/${BaseName}.xml
+            DEPENDS anbox/dbus/${BaseName}.xml
+            OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${BaseName}_server_glue.h
+            COMMENT "Generating server code for DBUS (${BaseName})"
+        )
+        list(APPEND DBUS_GENERATED "${CMAKE_CURRENT_BINARY_DIR}/${BaseName}_server_glue.h")
+    endmacro()
+
+    macro(DBusClient BaseName)
+        add_custom_command(
+            COMMAND ${XML2CPP} --proxy=${CMAKE_CURRENT_BINARY_DIR}/${BaseName}_client_glue.h ${CMAKE_CURRENT_SOURCE_DIR}/anbox/dbus/${BaseName}.xml
+            DEPENDS anbox/dbus/${BaseName}.xml
+            OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${BaseName}_client_glue.h
+            COMMENT "Generating client code for DBUS (${BaseName})"
+        )
+        list(APPEND DBUS_GENERATED "${CMAKE_CURRENT_BINARY_DIR}/${BaseName}_client_glue.h")
+    endmacro()
+
+    set(DBUS_GENERATED)
+
+    DBusServer(application_manager)
+    DBusClient(application_manager)
+    DBusServer(sensors)
+    DBusServer(gps)
+
+    set(DBUS_SRC
+        anbox/dbus/bus.cpp
+        anbox/dbus/bus.h
+        anbox/dbus/interface.h
+        ${DBUS_GENERATED}
+        anbox/dbus/application_manager_server.cpp
+        anbox/dbus/application_manager_server.h
+        anbox/dbus/application_manager_client.cpp
+        anbox/dbus/application_manager_client.h
+        anbox/dbus/sensors_server.cpp
+        anbox/dbus/sensors_server.h
+        anbox/dbus/gps_server.cpp
+        anbox/dbus/gps_server.h
     )
-    list(APPEND DBUS_GENERATED "${CMAKE_CURRENT_BINARY_DIR}/${BaseName}_server_glue.h")
-endmacro()
-
-macro(DBusClient BaseName)
-    add_custom_command(
-        COMMAND ${XML2CPP} --proxy=${CMAKE_CURRENT_BINARY_DIR}/${BaseName}_client_glue.h ${CMAKE_CURRENT_SOURCE_DIR}/anbox/dbus/${BaseName}.xml
-        DEPENDS anbox/dbus/${BaseName}.xml
-        OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${BaseName}_client_glue.h
-        COMMENT "Generating client code for DBUS (${BaseName})"
+else()
+    set(DBUS_SRC
+        anbox/dbus-old/bus.cpp
+        anbox/dbus-old/bus.h
+        anbox/dbus-old/codecs.h
+        anbox/dbus-old/interface.h
+        anbox/dbus-old/sd_bus_helpers.c
+        anbox/dbus-old/sd_bus_helpers.h
+        anbox/dbus-old/sd_bus_helpers.hpp
+        anbox/dbus-old/skeleton/application_manager.cpp
+        anbox/dbus-old/skeleton/application_manager.h
+        anbox/dbus-old/skeleton/service.cpp
+        anbox/dbus-old/skeleton/service.h
+        anbox/dbus-old/stub/application_manager.cpp
+        anbox/dbus-old/stub/application_manager.h
     )
-    list(APPEND DBUS_GENERATED "${CMAKE_CURRENT_BINARY_DIR}/${BaseName}_client_glue.h")
-endmacro()
-
-set(DBUS_GENERATED)
-
-DBusServer(application_manager)
-DBusClient(application_manager)
-DBusServer(sensors)
-DBusServer(gps)
+    add_definitions(-DUSE_OLD_DBUS)
+endif()
 
 set(SOURCES
     anbox/android/intent.cpp
@@ -176,18 +210,7 @@ set(SOURCES
     anbox/container/service.cpp
     anbox/container/service.h
 
-    anbox/dbus/bus.cpp
-    anbox/dbus/bus.h
-    anbox/dbus/interface.h
-    ${DBUS_GENERATED}
-    anbox/dbus/application_manager_server.cpp
-    anbox/dbus/application_manager_server.h
-    anbox/dbus/application_manager_client.cpp
-    anbox/dbus/application_manager_client.h
-    anbox/dbus/sensors_server.cpp
-    anbox/dbus/sensors_server.h
-    anbox/dbus/gps_server.cpp
-    anbox/dbus/gps_server.h
+    ${DBUS_SRC}
 
     anbox/graphics/buffered_io_stream.cpp
     anbox/graphics/buffered_io_stream.h
@@ -387,6 +410,13 @@ set(SOURCES
     anbox/system_configuration.h)
 
 add_library(anbox-core STATIC ${SOURCES})
+
+if(NOT USE_OLD_DBUS)
+  set(SDBUS_LINK
+     sdbus-c++
+  )
+endif()
+
 target_link_libraries(anbox-core
   ${Boost_LDFLAGS}
   ${Boost_LIBRARIES}
@@ -410,10 +440,14 @@ target_link_libraries(anbox-core
   OpenGLESDispatch
   OpenglCodecCommon
   anbox-protobuf
-  sdbus-c++
+
+  ${SDBUS_LINK}
+
   xdg)
 
-link_directories(${CMAKE_CURRENT_BINARY_DIR}/../external/sdbus-cpp/src/sdbus-cpp-build/)
+if(NOT USE_OLD_DBUS)
+ link_directories(${CMAKE_CURRENT_BINARY_DIR}/../external/sdbus-cpp/src/sdbus-cpp-build/)
+endif()
 
 add_executable(anbox main.cpp ${BACKWARD_ENABLE})
 target_link_libraries(anbox

@@ -35,12 +35,19 @@
 #include "anbox/cmds/session_manager.h"
 #include "anbox/common/dispatcher.h"
 #include "anbox/container/client.h"
+
+#ifdef USE_OLD_DBUS
+#include "anbox/dbus-old/bus.h"
+#include "anbox/dbus-old/skeleton/service.h"
+#else
 #include "anbox/dbus/application_manager_server.h"
 #include "anbox/dbus/gps_server.h"
 #include "anbox/dbus/sensors_server.h"
 #include "anbox/dbus/bus.h"
 #include "anbox/dbus/interface.h"
 #include "anbox/dbus/sensors_server.h"
+#endif
+
 #include "anbox/graphics/emugl/Renderer.h"
 #include "anbox/graphics/gl_renderer_server.h"
 #include "anbox/input/manager.h"
@@ -324,6 +331,16 @@ anbox::cmds::SessionManager::SessionManager()
       });
     }
 
+#ifdef USE_OLD_DBUS
+    auto bus_type = anbox::dbus::Bus::Type::Session;
+    if (use_system_dbus_)
+      bus_type = anbox::dbus::Bus::Type::System;
+    auto bus = std::make_shared<anbox::dbus::Bus>(bus_type);
+
+    auto skeleton = anbox::dbus::skeleton::Service::create_for_bus(bus, app_manager);
+
+    bus->run_async();
+#else
     auto connection = use_system_dbus_
                           ? sdbus::createSystemBusConnection(dbus::interface::Service::name())
                           : sdbus::createSessionBusConnection(dbus::interface::Service::name());
@@ -331,6 +348,7 @@ anbox::cmds::SessionManager::SessionManager()
     SensorsServer sensorsServer(*connection, dbus::interface::Service::path(), sensors_state);
     GpsServer gpsServer(*connection, dbus::interface::Service::path(), gps_info_broker);
     connection->enterEventLoopAsync();
+#endif
 
     rt->start();
     trap->run();

@@ -12,9 +12,9 @@ namespace application {
 struct SensorsState : public DoNotCopyOrMove {
   SensorsState() {
     disabled_sensors = 0;
-    acceleration = {0, 0, 9.80665};
-    magneticField = {25, 25, 5};
-    orientation = {0, 0, 0};
+    acceleration = std::make_tuple(0, 0, 9.80665);
+    magneticField = std::make_tuple(25, 25, 5);
+    orientation = std::make_tuple(0, 0, 0);
     temperature = 25;
     proximity = 5;
     light = 1240;

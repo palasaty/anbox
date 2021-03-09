@@ -429,7 +429,7 @@ void LxcContainer::start(const Configuration &configuration) {
     }
 
     DEBUG("Using static binder device /dev/binder");
-    devices.insert({binder, { 0666, "/dev/binder"}});
+    devices.insert({"/dev/binder", { 0666, binder}});
   }
 
   for (const auto &bind_mount : bind_mounts) {

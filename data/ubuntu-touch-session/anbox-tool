@@ -20,17 +20,16 @@
 
 # Setup anbox on ubuntu touch
 
+import argparse
+import gzip
 import lxc
 import os
-import argparse
+import shutil
 import subprocess
 import sys
 import time
-import shutil
-import requests
 
-BASE_URL = "http://cdimage.ubports.com/anbox-images"
-DEVICES_URL = "%s/devices.json" % BASE_URL
+BASE_URL = "https://cdimage.ubports.com/anbox-images"
 ANBOX_DATA = "/home/phablet/anbox-data"
 DESKTOP_FILES = "/home/phablet/.local/share/applications"
 DESKTOP_FILE = "%s/anbox-com-android-settings.desktop" % DESKTOP_FILES
@@ -78,25 +77,26 @@ def is_app(app_str):
     return True if find_app(app_str) else False
 
 
-class DeviceJson(object):
-    def __init__(self):
-        p = requests.get(DEVICES_URL).json()
-        self.obj = p
-        for key in self.obj.keys():
-            if(key.lower()!=key):
-                self.obj[key.lower()]=self.obj.pop(key)
-        self.device = subprocess.check_output(
-            ["getprop", "ro.product.device"]).strip().decode("utf-8").lower()
+class DeviceInfo(object):
+    def check_32binder(self):
+        for line in gzip.open('/proc/config.gz', mode='r'):
+            option = line.strip().split(b'=')
+            if len(option) is not 2:
+                continue
 
-    def check(self):
-        # Device check!
-        if self.device not in self.obj:
-            print("%s is not supported (yet)" % self.device)
-            sys.exit(1)
+            if (option[0] == 'CONFIG_ANBOX_BINDER_IPC_32BIT' and
+                option[1].lower() == 'y'):
+                return True
+        return False
 
     def get(self):
-        self.check()
-        return self.obj[self.device]
+        32binder = self.check_32binder()
+        # TODO: Get the package architecture we're using once arm64/x86 images
+        # for anbox are built and available on the UBports server
+        # For now, we just always use armhf image
+        #arch = subprocess.check_output(['dpkg', '--print-architecture']).strip()
+        arch = 'armhf'
+        return 'android-%s-%dbinder' % (arch, 32binder ? 32 : 64)
 
 
 class AnboxContainer(object):
@@ -160,8 +160,7 @@ def touch(path):
 
 def doCheck():
     if not checkBinder():
-        die("Anbox kernel is not installed! Please flash this first!")
-        return False
+        die("Anbox has not been enabled for this device. Please consult device maintainer.")
     return True
 
 
@@ -217,7 +216,7 @@ def upgrade():
         return
     stopAnbox()
     os.remove(os.path.join(ANBOX_DATA, "android.img"))
-    device = DeviceJson()
+    device = DeviceInfo()
     updateAndroidImg(device.get())
     if enableExists():
         startAnbox()
@@ -233,7 +232,7 @@ def install():
     if androidImgExists():
         print("Anbox alredy is installed, please use update function")
         return
-    device = DeviceJson()
+    device = DeviceInfo()
     updateAndroidImg(device.get())
     touch(os.path.join(ANBOX_DATA, ".enable"))
     startAnbox()

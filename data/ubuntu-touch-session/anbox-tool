@@ -91,7 +91,11 @@ class DeviceInfo(object):
 
     def get(self):
         32binder = self.check_32binder()
-        arch = subprocess.check_output(['dpkg', '--print-architecture']).strip()
+        # TODO: Get the package architecture we're using once arm64/x86 images
+        # for anbox are built and available on the UBports server
+        # For now, we just always use armhf image
+        #arch = subprocess.check_output(['dpkg', '--print-architecture']).strip()
+        arch = 'armhf'
         return 'android-%s-%dbinder' % (arch, 32binder ? 32 : 64)
 
 

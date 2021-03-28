@@ -19,6 +19,7 @@
 #include "anbox/rpc/pending_call_cache.h"
 
 #include "anbox_rpc.pb.h"
+#include <google/protobuf/stubs/callback.h>
 
 namespace anbox {
 namespace rpc {

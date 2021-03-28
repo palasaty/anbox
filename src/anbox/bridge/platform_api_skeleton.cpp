@@ -27,6 +27,7 @@
 #endif // defined(Status)
 
 #include "anbox_bridge.pb.h"
+#include <google/protobuf/stubs/callback.h>
 
 namespace anbox {
 namespace bridge {

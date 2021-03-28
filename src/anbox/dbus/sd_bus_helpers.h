@@ -30,7 +30,7 @@ constexpr sd_bus_vtable start(uint64_t flags)
   sd_bus_vtable v{};
   v.type = _SD_BUS_VTABLE_START;
   v.flags = flags;
-  v.x.start = decltype(v.x.start){sizeof(sd_bus_vtable)};
+  v.x.start = decltype(v.x.start){sizeof(sd_bus_vtable), _SD_BUS_VTABLE_PARAM_NAMES, &sd_bus_object_vtable_format};
 
   return v;
 }
@@ -49,7 +49,7 @@ constexpr sd_bus_vtable method_o(const char* member, const char* signature,
   sd_bus_vtable v{};
   v.type = _SD_BUS_VTABLE_METHOD;
   v.flags = flags;
-  v.x.method = decltype(v.x.method){member, signature, result, handler, offset};
+  v.x.method = decltype(v.x.method){member, signature, result, handler, offset, ""};
 
   return v;
 }
@@ -64,7 +64,7 @@ constexpr sd_bus_vtable signal(const char* member, const char* signature, uint64
   sd_bus_vtable v{};
   v.type = _SD_BUS_VTABLE_SIGNAL;
   v.flags = flags;
-  v.x.signal = decltype(v.x.signal){member, signature};
+  v.x.signal = decltype(v.x.signal){member, signature, ""};
 
   return v;
 }

@@ -20,6 +20,7 @@
 #define ANBOX_RPC_TEMPLATE_MESSAGE_PROCESSOR_H_
 
 #include <google/protobuf/stubs/common.h>
+#include <google/protobuf/stubs/callback.h>
 
 #include "anbox/rpc/message_processor.h"
 
